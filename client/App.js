@@ -3,7 +3,7 @@ import React from 'react';
 const App = () =>{
     return(
         <div>
-            <h1>Hello</h1>
+            <h1>Hello This is to add React</h1>
         </div>
     )
 }
