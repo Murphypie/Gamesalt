@@ -18,6 +18,7 @@ module.exports = {
   performance: {
     hints: false
   },
+  // Loaders and Rules - Loaders are JS modules that take in source files and return them in a modified state
   module: {
     rules: [
       {
@@ -30,6 +31,7 @@ module.exports = {
       },
     ],
   },
+  // Plugins
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Gamesalt',
