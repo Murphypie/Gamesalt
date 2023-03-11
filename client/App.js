@@ -1,10 +1,15 @@
 import React from 'react';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+
+import MainPage from './components/mainPage';
 
 const App = () =>{
     return(
-        <div>
-            <h1>Hello This is to add React</h1>
-        </div>
+        <BrowserRouter>
+            <Routes>
+                <Route path = '/' element = {<MainPage />} />
+            </Routes>
+        </BrowserRouter>
     )
 }
 
