@@ -6,7 +6,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=production webpack-dev-server --open",
     "dev": "concurrently \"nodemon server/server.js\" \"cross-env NODE_ENV=development webpack serve --hot --open\"",
-    "build": "webpack",
+    "build": "cross-env NODE_ENV=production webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -20,6 +20,8 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "fast-csv": "^4.3.6",
+    "pg": "^8.10.0",
+    "pg-promise": "^11.4.1",
     "puppeteer": "^19.7.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
