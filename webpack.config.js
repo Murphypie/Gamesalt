@@ -41,9 +41,10 @@ module.exports = {
   ],
   devServer: {
     hot: true,
+    port: 8080,
     static:{
         // Tell the server where to serve content from.
-        directory: path.resolve(__dirname, './build/'),
+        directory: path.resolve(__dirname, './client/'),
 
     /*The bundled files will be available in the browser under this path. 
     publicPath says that any request made to '/' will be served the development version of our bundle via localhost:8080. publicPath should match where we have index.html
@@ -52,5 +53,15 @@ module.exports = {
         watch:true
     },
     historyApiFallback: true,
-  },
+
+    // Proxy says taht any request made to '/test' will be routed to our server on localhost:3000
+    // proxy should match whatever is going to match your fetch request on your frontend.
+    proxy: {
+        '/table/**': {
+            target: 'http://localhost:3000/',
+            secure: false,
+        },
+      },
+    },
+    watch: true,
 };
