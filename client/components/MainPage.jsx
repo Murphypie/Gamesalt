@@ -1,11 +1,12 @@
 import React from 'react';
-import {Redirect} from 'react-router-dom'
+import {Link} from "react-router-dom";
 
 const MainPage = (()=>{
 
     return(
         <div>
-            <h1>Hello!</h1>
+            <h1>Welcome</h1>
+            <Link to= "/login">Log in</Link>
         </div>
     )
 
