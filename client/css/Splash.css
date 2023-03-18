@@ -1,0 +1,26 @@
+.main-container {
+    display: grid;
+    height: 100vh;
+    margin: 0;
+    grid-template-columns: 10fr 90fr;
+    grid-template-rows: 10fr 90fr;
+    grid-template-areas:
+    "top-side top-side"
+    "left-side right-side";
+}
+
+.top-side{
+    grid-area: top-side;
+    background-color: coral;
+}
+
+.left-side{
+    grid-area: left-side;
+    background-color: blue;
+
+}
+
+.right-side{
+    grid-area: right-side;
+    background-color: pink;
+}

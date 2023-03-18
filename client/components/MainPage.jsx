@@ -1,15 +1,29 @@
-import React from 'react';
-import {Link} from "react-router-dom";
+import React from "react";
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
-const MainPage = (()=>{
+import TopContainer from "./TopContainer";
+import Navigation from "./navigation";
+import GameList from "./GameList";
+import SplashPage from "./SplashPage";
 
-    return(
-        <div>
-            <h1>Welcome</h1>
-            <Link to= "/login">Log in</Link>
+const MainPage = () => {
+    return (
+        <div className="main-container">
+            <div className="top-side">
+                <TopContainer />
+                <Link to= "/login">Log in</Link>
+            </div>
+            <div className="left-side">
+                <Navigation />
+            </div>
+            <div className="right-side">
+                <Routes>
+                    <Route path = '/' element = {<SplashPage />} /> 
+                    <Route path = '/gamelist' element = {<GameList />} /> 
+                </Routes>
+            </div>
         </div>
-    )
+    );
+};
 
-})
-
-export default MainPage
+export default MainPage;
