@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const PORT = process.env.PORT || 3000;
 
 const tableRouter = require('./routes/table.js')
+const userRouter = require('./routes/user.js')
 
 // Handle Cookies
 app.use(cookieParser())
@@ -20,6 +21,7 @@ app.use(express.static(path.join(__dirname, './build')));
 
 // Routes
 app.use('/table', tableRouter);
+app.use('/user', userRouter);
 
 // route handler to respond with main app
 app.get('/', (req, res)=>{
