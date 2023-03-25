@@ -47,3 +47,4 @@ yarn-debug.log*
 yarn-error.log*
 
 createTableController.js
+server/data
