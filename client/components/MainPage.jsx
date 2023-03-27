@@ -12,6 +12,8 @@ const MainPage = () => {
             <div className="top-side">
                 <TopContainer />
                 <Link to= "/login">Log in</Link>
+                <br></br>
+                <Link to= "/carmain">Go to Neuro Car</Link>
             </div>
             <div className="left-side">
                 <Navigation />
