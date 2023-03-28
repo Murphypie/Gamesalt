@@ -1,3 +1,5 @@
+import {lerp, getIntersection} from './utils'
+
 class Sensor{
     constructor(car){
         this.car = car;
