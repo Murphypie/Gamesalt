@@ -51,7 +51,7 @@ userController.verifyUser = async(req, res, next) =>{
                 res.locals.userInfo = {
                     userid: userid,
                     firstName: first_name,
-                    last_name: last_name,
+                    lastName: last_name,
                     email: email,
                     steamid:steamid
                 }

@@ -1,8 +1,10 @@
 import React from 'react';
 import { useState } from "react";
+import { useDispatch } from 'react-redux';
 import {useNavigate, Link} from "react-router-dom";
 import {Grid, TextField, Button, IconButton, InputAdornment} from "@mui/material";
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import {loginReducer} from '../slices/userInfoSlice'
 
 const Login = (()=>{
     const [loginInputs, setloginInputs] = useState({
@@ -16,7 +18,8 @@ const Login = (()=>{
         status: ""
     });
 
-    let navigate = useNavigate();
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const signUp = () =>{
         let path = '/signup'
@@ -52,6 +55,7 @@ const Login = (()=>{
         }).then(res=>res.json()).then(data=>{
             if(data.userInfo){
                 setLoginFailStatus({...loginFailStatus, loginfailbool:false, status:"Login Success"})
+                dispatch(loginReducer(data.userInfo))
                 loginSuccess();
             }else{
                 if(data.Status === "NoUser"){
