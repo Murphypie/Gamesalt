@@ -23,6 +23,12 @@ const Login = (()=>{
         navigate(path);
     }
 
+    const loginSuccess = () =>{
+        let path = '/'
+        navigate(path);
+    }
+
+    
     const handleChangeLogIn = (props) => (event) => {
         setloginInputs({ ...loginInputs, [props]: event.target.value });
     };
@@ -46,7 +52,7 @@ const Login = (()=>{
         }).then(res=>res.json()).then(data=>{
             if(data.userInfo){
                 setLoginFailStatus({...loginFailStatus, loginfailbool:false, status:"Login Success"})
-                console.log(data.userInfo)
+                loginSuccess();
             }else{
                 if(data.Status === "NoUser"){
                     setLoginFailStatus({...loginFailStatus, loginfailbool:true, status:"No User Exists in the Database"})
