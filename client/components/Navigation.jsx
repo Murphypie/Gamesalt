@@ -11,9 +11,15 @@ const Navigation = (()=>{
         navigate(path);
     }
 
+    const main = () =>{
+        let path = '/'
+        navigate(path);
+    }
+
     return(
         <div>
             <h1>This is to be navigation</h1>
+            <button onClick={main}>Main Page</button>
             <button onClick={gameList}>Get Game List</button>
         </div>
     )

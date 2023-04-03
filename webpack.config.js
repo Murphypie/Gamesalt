@@ -61,7 +61,7 @@ module.exports = {
     /*The bundled files will be available in the browser under this path. 
     publicPath says that any request made to '/' will be served the development version of our bundle via localhost:8080. publicPath should match where we have index.html
     */
-        publicPath: '/build',
+        publicPath: '/client',
         watch:true
     },
     historyApiFallback: true,

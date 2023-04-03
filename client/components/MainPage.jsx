@@ -13,7 +13,7 @@ const MainPage = () => {
                 <TopContainer />
                 <Link to= "/login">Log in</Link>
                 <br></br>
-                <Link to= "/carmain">Go to Neuro Car</Link>
+                {/* <Link to= "/carmain">Go to Neuro Car</Link> */}
             </div>
             <div className="left-side">
                 <Navigation />
