@@ -1,49 +1,38 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-
-export const fetchUserData = createAsyncThunk(
-    'user/fetchUserData',
-    async (userId, thunkAPI) => {
-      const response = await fetch(`https://jsonplaceholder.typicode.com/users/${userId}`);
-      const data = await response.json();
-      return data;
-    }
-  );
-
-
-const userInfo = createSlice({
-    name:"userInfo",
-    initialState: {
-        accountName:"",
-        email: "",
+// export const fetchUserData = createAsyncThunk(
+//     'user/fetchUserData',
+//     async (userId, thunkAPI) => {
+//       const response = await fetch(`https://jsonplaceholder.typicode.com/users/${userId}`);
+//       const data = await response.json();
+//       return data;
+//     }
+//   );
+  
+export const userInfo = createSlice({
+    name: "userInfo",
+    initialState:{
+        userid: "",
         firstName: "",
-        lastName: "",
-        steamProfileId:""
+        lastName:"",
+        emailAddress:"",
+        steamid:"",
     },
     reducers:{
-        setUserInfo:(state,action)=>{
-
+        loginReducer: (state, action) =>{
+            //console.log('action.payload in login Reducer', action.payload);
+            const {userid, firstName, lastName, email, steamid} = action.payload
+            state.userid = userid;
+            state.firstName = firstName;
+            state.lastName = lastName;
+            state.emailAddress = email;
+            state.steamid = steamid;
         }
-    },
-    // extraReducers: (builder) => {
-    //     builder
-    //       .addCase(fetchUserData.pending, (state) => {
-    //         state.status = 'loading';
-    //       })
-    //       .addCase(fetchUserData.fulfilled, (state, action) => {
-    //         state.status = 'succeeded';
-    //         state.data = action.payload;
-    //       })
-    //       .addCase(fetchUserData.rejected, (state, action) => {
-    //         state.status = 'failed';
-    //         state.error = action.error.message;
-    //       });
-    // },
+    }
+});
 
-})
+export const{
+    loginReducer
+} = userInfo.actions;
 
-// export actions
-export const{setUserInfo} = userInfo.actions;
-
-// export reducer
 export default userInfo.reducer;

@@ -12,4 +12,9 @@ router.post('/signup', userController.createUser, (req, res)=>{
     res.send({'Status':'Success'})}   
 )
 
+router.post('/get_id', userController.getUser_id, (req, res)=>{
+    res.send(res.locals.user_id)}
+)
+
+
 module.exports = router;
