@@ -63,8 +63,26 @@ userController.verifyUser = async(req, res, next) =>{
     }catch(err){
         return next(err)
     }
-    
+}
 
+userController.getUser_id = async(req, res, next) =>{
+    try{
+        const userQuery = `SELECT _id FROM userinfo WHERE userid = $1`
+        const value = [req.body.userid];
+        const user_id = await db.query(userQuery, value);
+
+        if(user_id.rowCount === 0){
+            return res.send({"Status": "No Steam id"})
+        }else{
+            const {_id} = user_id.rows[0];
+            res.locals.user_id = {
+                user_id: _id
+            }
+            return next();
+        }
+    }catch(err){
+        return next(err)
+    }
 }
 
 module.exports = userController;

@@ -1,17 +1,16 @@
 import React from 'react';
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useDispatch } from 'react-redux';
 import {useNavigate, Link} from "react-router-dom";
 import {Grid, TextField, Button, IconButton, InputAdornment} from "@mui/material";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import {loginReducer} from '../slices/userInfoSlice'
+import {loggedInReducer} from '../slices/loggedStatusSlice';
 
 const Login = (()=>{
-    const [loginInputs, setloginInputs] = useState({
-        userid: "",
-        password: "",
-        showPassword: false,
-    });
+    const useridRef = useRef();
+    const passwordRef = useRef();
+    const [showPassword, setShowPassword] = useState(false);
 
     const [loginFailStatus, setLoginFailStatus] = useState({
         loginfailbool:false,
@@ -31,16 +30,9 @@ const Login = (()=>{
         navigate(path);
     }
 
-    
-    const handleChangeLogIn = (props) => (event) => {
-        setloginInputs({ ...loginInputs, [props]: event.target.value });
-    };
 
     const handleClickShowPassword = () => {
-        setloginInputs({
-            ...loginInputs,
-            showPassword: !loginInputs.showPassword,
-        });
+        setShowPassword(!showPassword)
     };
 
     const handleSubmitLogin = (event) => {
@@ -51,11 +43,15 @@ const Login = (()=>{
           headers: {
             'Content-type': 'Application/JSON',
           },
-          body: JSON.stringify(loginInputs),
+          body: JSON.stringify({
+            userid: useridRef.current.value,
+            password: passwordRef.current.value
+        }),
         }).then(res=>res.json()).then(data=>{
             if(data.userInfo){
                 setLoginFailStatus({...loginFailStatus, loginfailbool:false, status:"Login Success"})
                 dispatch(loginReducer(data.userInfo))
+                dispatch(loggedInReducer(true))
                 loginSuccess();
             }else{
                 if(data.Status === "NoUser"){
@@ -75,14 +71,13 @@ const Login = (()=>{
         )
     }
 
-
     return(
         <div>
             <h1>Log in</h1>
             <Grid container spacing={2}>
                 <Grid item xs={12} sm={7}>
                     <TextField
-                        onChange={handleChangeLogIn("userid")}
+                        inputRef={useridRef}
                         userid="userid"
                         id="userid"
                         label="User ID"
@@ -93,7 +88,7 @@ const Login = (()=>{
                 </Grid>
                 <Grid item xs={12} sm={7}>
                     <TextField
-                    onChange={handleChangeLogIn("password")}
+                    inputRef={passwordRef}
                     InputProps={{
                         endAdornment: (
                             <InputAdornment position="end">
@@ -106,7 +101,7 @@ const Login = (()=>{
                         password="password"
                         id="password"
                         label="Password"
-                        type={loginInputs.showPassword ? "text":"password"}
+                        type={showPassword ? "text":"password"}
                         required
                         variant="outlined"
                         fullWidth
@@ -120,8 +115,7 @@ const Login = (()=>{
                         onClick={handleSubmitLogin}
                         type="button"
                         variant="contained"
-                        width="75%"
-                    >
+                        width="75%">
                         Log In
                     </Button>
                 </Grid>

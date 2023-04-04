@@ -20,6 +20,7 @@ export const userInfo = createSlice({
     },
     reducers:{
         loginReducer: (state, action) =>{
+            //console.log('action.payload in login Reducer', action.payload);
             const {userid, firstName, lastName, email, steamid} = action.payload
             state.userid = userid;
             state.firstName = firstName;
@@ -35,5 +36,3 @@ export const{
 } = userInfo.actions;
 
 export default userInfo.reducer;
-
-export const userInfoState = (state) => state;

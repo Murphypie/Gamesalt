@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import TopContainer from "./TopContainer";
 import Navigation from "./navigation";
 import GameList from "./GameList";
+import GameDisplay from "./GameDisplay";
 import SplashPage from "./SplashPage";
 
 const MainPage = () => {
@@ -21,7 +22,7 @@ const MainPage = () => {
             <div className="right-side">
                 <Routes>
                     <Route path = '/' element = {<SplashPage />} /> 
-                    <Route path = '/gamelist' element = {<GameList />} /> 
+                    <Route path = '/gamedisplay' element = {<GameDisplay />} /> 
                 </Routes>
             </div>
         </div>
