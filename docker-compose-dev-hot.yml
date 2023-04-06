@@ -1,0 +1,17 @@
+version: "3"
+services:
+  dev:
+    image: "gamesalt/mm-dev"
+    container_name: "mm-dev-hot"
+    ports:
+      - "8080:8080"
+    volumes: #volume is where it keeps the track of changes you made to this container in the actual pc
+
+    # Mounting the current dir(.) on our host machine to the /usr/src/app directory in the container.
+    # This allows the webpack-dev-server running in the container to watch for code changes in our file system outside the container
+      - .:/usr/src/app # Path Based Volumes. 
+      - node_modules:/usr/src/app/node_modules # Named Volume - Initialized when a container is created. If the container's base image contains data at the specified mount point,
+                                               # that exisitng data is copied into the new volume, making it available within the container. So you can set it and forget it that it exists.
+    command: npm run dev
+volumes: # Creating the named volume(s) we're mounting in our container(s)
+  node_modules: # usually empty key

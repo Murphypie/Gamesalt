@@ -17,21 +17,23 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
 // Static
-app.use(express.static(path.join(__dirname, './build')));
+app.use(express.static(path.join(__dirname, '../build')));
 
 // Routes
 app.use('/table', tableRouter);
 app.use('/user', userRouter);
 
 // route handler to respond with main app
+// You don't need this but If I want to create or do something with cookies, it is convinent to do it here.
 app.get('/', (req, res)=>{
     return res.sendFile(path.join(__dirname, '../client/index.html'));
 });
 
-
 // catch-all route handler for any requests to an unknown route
-app.use('*', (req, res)=>{
-    res.status(400).send("Not valid address")
+app.use('/*', (req, res, next)=>{
+    const err = new Error('Not Found');
+    err.status = 404;
+    next(err);
 })
 
 // Error Handler

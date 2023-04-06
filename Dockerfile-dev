@@ -1,0 +1,8 @@
+FROM node:18.14
+RUN npm install webpack -g
+WORKDIR /usr/src/app
+# COPY source(package*.json) and Destination(./) which is /usr/src/app in docker directory
+# ./package*.json means source is (./package*.json) but no destionation which will then put the file at the default directory which is also ./ (root)
+COPY package*.json ./
+RUN npm install
+EXPOSE 8080

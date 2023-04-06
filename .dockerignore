@@ -1,0 +1,9 @@
+# Comment if you need
+# */temp* - Excludes files and directories names start with temp in any immediate subdirecoty of the root. For example, /somdir/temprary.txt - ignored
+# */*/temp* - Excludes files and directories starting with temp from any subdirectory that is two levels velow the root. For example, /somedir/subdir/temporary.txt - ignored
+# temp? - Exclude files and directories in the root directory whose names are a one-character extension of temp. For example, /tempa and /tempb - ignored
+# ! - Exception rules
+# ** - wildcard - matches any number of directories.
+
+**/node_modules
+**/.git
