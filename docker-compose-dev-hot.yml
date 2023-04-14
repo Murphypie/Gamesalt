@@ -2,7 +2,7 @@ version: "3"
 services:
   dev:
     image: "gamesalt/mm-dev"
-    container_name: "mm-dev-hot"
+    container_name: "gs-dev"
     ports:
       - "8080:8080"
     volumes: #volume is where it keeps the track of changes you made to this container in the actual pc
@@ -13,5 +13,11 @@ services:
       - node_modules:/usr/src/app/node_modules # Named Volume - Initialized when a container is created. If the container's base image contains data at the specified mount point,
                                                # that exisitng data is copied into the new volume, making it available within the container. So you can set it and forget it that it exists.
     command: npm run dev
-volumes: # Creating the named volume(s) we're mounting in our container(s)
+  prod:
+    image: "gamesalt/mm-prod"
+    container_name: "gs-prod"
+    ports:
+      - "3001:3000"
+    command: npm start
+volumes: # Create a volumes dictionary where we'll create the named volume(s) we're mounting in our container(s)
   node_modules: # usually empty key
