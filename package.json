@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "startNode": "node ./server/server.js",
     "start": "cross-env NODE_ENV=production webpack-dev-server --open",
     "dev": "concurrently \"nodemon server/server.js\" \"cross-env NODE_ENV=development webpack serve --open\"",
     "build": "cross-env NODE_ENV=production webpack",

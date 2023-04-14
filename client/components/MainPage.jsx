@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
 import TopContainer from "./TopContainer";
-import Navigation from "./navigation";
+import Navigation from "./Navigation";
 import GameList from "./GameList";
 import GameDisplay from "./GameDisplay";
 import SplashPage from "./SplashPage";
