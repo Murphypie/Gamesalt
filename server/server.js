@@ -7,6 +7,7 @@ const PORT = process.env.PORT || 3000;
 
 const tableRouter = require('./routes/table.js')
 const userRouter = require('./routes/user.js')
+const gameRouter = require('./routes/game.js')
 
 // Handle Cookies
 app.use(cookieParser())
@@ -22,6 +23,7 @@ app.use(express.static(path.join(__dirname, '../build')));
 // Routes
 app.use('/table', tableRouter);
 app.use('/user', userRouter);
+app.use('/game', gameRouter);
 
 // route handler to respond with main app
 // You don't need this but If I want to create or do something with cookies, it is convinent to do it here.
@@ -44,7 +46,7 @@ app.use((err, req, res, next) => {
       message: { err: 'An error occurred' },
     };
     const errorObj = Object.assign({}, defaultErr, err);
-    console.log(errorObj.log);
+    console.log(errorObj);
     return res.status(errorObj.status).json(errorObj.message);
 });
 

@@ -13,7 +13,7 @@ router.post('/signup', userController.createUser, (req, res)=>{
 )
 
 router.post('/get_id', userController.getUser_id, (req, res)=>{
-    res.send(res.locals.user_id)}
+    res.send(res.locals.user_ids)}
 )
 
 

@@ -6,6 +6,7 @@ import Loading from './Loading';
 
 const GameDisplay = (()=>{
     const [user_id, setUser_id] = useState("");
+    const [user_steam_id, setUser_steam_id] = useState("");
     const loggedInState = useSelector(state=>state.loggedStatus.loggedIn);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -30,13 +31,15 @@ const GameDisplay = (()=>{
         })
         .then(res=>res.json())
         .then(data=>{
+            console.log(data);
             setUser_id(data.user_id)
+            setUser_steam_id(data.steam_id)
             setIsLoading(false)
         })
     }
 
     if(loggedInState && user_id.length !== 0){
-        loggedInComp = <GameList user_id={user_id} />
+        loggedInComp = <GameList user_id={user_id} steam_id = {user_steam_id} />
     }
 
     return(

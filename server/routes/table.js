@@ -7,8 +7,17 @@ router.get(
     '/createUserTable', 
     createTableController.userInfoTable, 
     (req,res)=>{
-        res.status(200).send('Userinfo table Createed')
+        res.status(200).send('Userinfo table Created')
     }
 )
+
+router.get(
+    '/createGameTable', 
+    createTableController.gameInfoTable, 
+    (req,res)=>{
+        res.status(200).send('Gameinfo table Created')
+    }
+)
+
 
 module.exports = router;
