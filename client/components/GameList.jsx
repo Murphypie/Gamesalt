@@ -1,10 +1,12 @@
-import React from 'react';
-
+import React, {useEffect, useState} from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 const GameList = ((props)=>{
 
     //const ownedGamesURL = `https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${process.env.steamAPIkey}&steamid=${process.env.steamID64}&include_appinfo=true&format=json`;
     //const playerSummariesURL = `https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${process.env.steamAPIkey}&steamids=${process.env.steamID64}`;
+    const {user_id, steam_id} = props;
+    console.log(user_id);
 
     const fetchedData = async () =>{
         fetch('/user/get_id',{
@@ -25,7 +27,7 @@ const GameList = ((props)=>{
         })
     }
 
-    const {user_id, steam_id} = props;
+
     return(
         <div>
             <h1>This is to be GameList</h1>

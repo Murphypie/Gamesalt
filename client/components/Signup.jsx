@@ -37,7 +37,6 @@ const SignUp = () => {
 
 
     const addUserToDatabase = () => {
-        let status;
         fetch("/user/signup", {
             method: "POST",
             headers: {

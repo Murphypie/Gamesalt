@@ -1,4 +1,5 @@
 const db = require('../models/gameSaltModels.js');
+const models = require('../models/gamesListMongo.js')
 const bcrypt = require('bcrypt');
 
 const SaltFactor = 5;
@@ -19,6 +20,7 @@ userController.createUser = async(req, res, next) =>{
         password = hash;
         
         const value = [userId, firstName, lastName, email, password, steamid];
+
         
         if(queryResult.rowCount === 0){
             const query = 'INSERT INTO userinfo (userid, first_name, last_name, email, password, steamid) values($1, $2, $3, $4, $5, $6)'
