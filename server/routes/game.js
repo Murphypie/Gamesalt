@@ -11,6 +11,12 @@ router.get(
     }
 )
 
-
+router.get(
+    '/gameFetch/:userid',
+    gameController.fetchGamesFromMongo,
+    (req,res)=>{
+        res.status(200).send(res.locals)
+    }
+)
 
 module.exports = router;

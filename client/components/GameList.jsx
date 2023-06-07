@@ -1,35 +1,37 @@
 import React, {useEffect, useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import GameViewComp from './GameViewComp';
 
 const GameList = ((props)=>{
-
-    //const ownedGamesURL = `https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${process.env.steamAPIkey}&steamid=${process.env.steamID64}&include_appinfo=true&format=json`;
-    //const playerSummariesURL = `https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${process.env.steamAPIkey}&steamids=${process.env.steamID64}`;
     const {user_id, steam_id} = props;
-    console.log(user_id);
+    const [loading, setLoading] = useState(true);
 
-    const fetchedData = async () =>{
-        fetch('/user/get_id',{
-            method: 'POST',
+    let gamesOutput = {};
+    const fetchGames = async () =>{
+        fetch(`game/gameFetch/${user_id}`,{
+            method: "GET",
             headers: {
-                'Content-type': 'Application/JSON',
-            },
-            body: JSON.stringify({
-                userid: userState.userid,
-            }),
+                'Content-Type': 'Application/JSON'
+              }
         })
         .then(res=>res.json())
         .then(data=>{
-            console.log(data);
-            setUser_id(data.user_id)
-            setUser_steam_id(data.steam_id)
-            setIsLoading(false)
+            gamesOutput = data["gamesList"]["games"]
+            setLoading(false);
         })
     }
 
+    useEffect(()=>{
+        fetchGames();
+    }, [])
+
+    if(!loading){
+        <GameViewComp />
+    }
 
     return(
         <div>
+            <button onClick={fetchGames}>Click here to refresh</button>
             <h1>This is to be GameList</h1>
         </div>
     )

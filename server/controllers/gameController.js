@@ -1,4 +1,5 @@
 const db = require('../models/gameSaltModels.js');
+const models = require('../models/gamesListMongo.js')
 const fs = require('fs');
 const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 const path = require('path');
@@ -72,6 +73,20 @@ gameController.bulkAddFromJSON = async (req, res, next) =>{
 
         // await db.query(query)
         return next();
+    }catch(err){
+        return next(err)
+    }
+}
+
+
+gameController.fetchGamesFromMongo = async (req, res, next) => {
+    const user_id = req.params.userid;
+    try{
+        models.GamesList.find({userId: user_id})
+        .then((data)=>{
+            res.locals.gamesList = data[0];
+            next();
+        })
     }catch(err){
         return next(err)
     }

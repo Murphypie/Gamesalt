@@ -31,7 +31,6 @@ const GameDisplay = (()=>{
         })
         .then(res=>res.json())
         .then(data=>{
-            console.log(data);
             setUser_id(data.user_id)
             setUser_steam_id(data.steam_id)
             setIsLoading(false)

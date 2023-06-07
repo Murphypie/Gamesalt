@@ -8,7 +8,7 @@ router.post('/login', userController.verifyUser, (req, res)=>{
     res.send(res.locals)}   
 )
 
-router.post('/signup', userController.createUser, (req, res)=>{
+router.post('/signup', userController.createUser, userController.addUsersToMongo, (req, res)=>{
     res.send({'Status':'Success'})}   
 )
 

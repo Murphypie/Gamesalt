@@ -14,9 +14,17 @@ mongoose.connect(MONGO_URI, {
 
 const Schema = mongoose.Schema;
 
+const gameSchema = new Schema({
+    gameName: String,
+    playedTime: Number
+})
+
 const gamesListSchema = new Schema({
     userId: String,
-    gameList: [Number]
+    games:{
+        type:Map,
+        of: gameSchema
+    }
 })
 
 const GamesList = mongoose.model('gameslist', gamesListSchema)
